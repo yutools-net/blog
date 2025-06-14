@@ -28,8 +28,9 @@
             line-height: 1.8;
             color: #374151;
             margin-bottom: 1rem;
-            /* ▼▼▼【修正点①】単語の途中での改行を防止 ▼▼▼ */
-            word-break: keep-all;
+            /* ▼▼▼【修正点①】word-break: keep-all; を削除し、自然な改行になるように修正 ▼▼▼ */
+            /* keep-allは日本語の長文では画面からはみ出す原因になります。 */
+            overflow-wrap: break-word; /* 長い英単語などがはみ出すのを防ぎます */
         }
         .article-body a:not(.no-underline) { color: #2563eb; text-decoration: underline; }
         .article-body a:hover:not(.no-underline) { text-decoration: none; }
@@ -163,8 +164,8 @@
                 </p>
             </section>
 
-            <!-- ▼▼▼【修正点②】中央揃えの範囲を修正 ▼▼▼ -->
-            <section class="mt-12 bg-blue-100 p-8 rounded-2xl">
+            <!-- ▼▼▼【修正点②】sectionタグにtext-centerを追加し、セクション全体を中央揃えに修正 ▼▼▼ -->
+            <section class="mt-12 bg-blue-100 p-8 rounded-2xl text-center">
                  <h2 class="border-none mt-0 text-2xl">電卓以上、Excel未満。この「ちょうど良さ」が、あなたの味方です。</h2>
                  <p class="mt-4">
                     もちろん、複雑なデータ分析や大規模な表計算では、Excelは最強のツールです。<br>
@@ -173,7 +174,8 @@
                  <p class="mt-4">
                     あなたのツールボックスに、電卓とExcelに加えて、「さぼカリ」という新しい選択肢を加えてみませんか？
                  </p>
-                 <div class="mt-6 text-center">
+                 <!-- 親要素で中央揃えにしたため、このdivのtext-centerは不要に -->
+                 <div class="mt-6">
                     <a href="https://yutools.net/sabocalc/" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-10 rounded-full text-lg shadow-lg transform hover:scale-105 transition-transform duration-300 no-underline">
                         お手軽計算ツール「さぼカリ」を試す
                     </a>
